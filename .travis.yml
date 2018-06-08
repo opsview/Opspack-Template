@@ -1,0 +1,34 @@
+sudo: true
+language: go
+go:
+- 1.7.x
+- 1.8.x
+env:
+  global:
+  - SOURCE=/home/travis/gopath/src/github.com/${TRAVIS_REPO_SLUG}
+  - REPO_NAME=${TRAVIS_REPO_SLUG#*/}
+  - OPSPACK_NAME=${REPO_NAME,,}
+  matrix:
+  - TEST_TYPE: build
+matrix:
+  exclude:
+  - go: 1.7.x
+    env: TEST_TYPE=build
+install:
+- cd $SOURCE
+- make create_opspack
+notifications:
+  email: false
+script:
+  - "./bin/verify_plugin.sh"
+before_deploy:
+- "./bin/pre_deploy.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: $API_KEY
+  file: release/$OPSPACK_NAME.opspack
+  on:
+    all_branches: true
+    tags: true
+  skip_cleanup: true
