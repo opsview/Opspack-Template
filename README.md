@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/opsview/Opspack-Template.svg?branch=master)](https://travis-ci.org/opsview/Opspack-Template)
 
-# 'Technology Name' Opspack
+# 'Technology Name' Opspack <version> [![Build Status](https://travis-ci.org/opsview/Opspack-Template.svg?branch=master)](https://travis-ci.org/opsview/Opspack-Template)
 
 DESCRIPTION OF THE TECHNOLOGY MONITORED
 
